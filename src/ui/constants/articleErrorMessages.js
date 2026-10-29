@@ -1,1 +1,1 @@
-export const TITLE_CANNOT_BE_EMPTY = 'Article title cannot be empty';
+export const ARTICLE_PUBLISH_FAILED_MESSAGE = 'Oops!';

@@ -45,4 +45,10 @@ export class ViewArticlePage extends BasePage {
       }
     });
   }
+
+  async assertArticleTagsListIsHidden() {
+    await this.step(`Assert the article tags list is hidden`, async () => {
+      await expect(this.page.locator('.tag-list')).toBeHidden();
+    });
+  }
 }

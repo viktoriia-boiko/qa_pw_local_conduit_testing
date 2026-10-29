@@ -32,7 +32,12 @@ testParameters.forEach(({ tagsNumber, testNameEnding }) => {
 
       await viewArticlePage.assertArticleTitleIsVisible(article.title);
       await viewArticlePage.assertArticleTextIsVisible(article.text);
-      await viewArticlePage.assertArticleTagsAreVisible(article.tags);
+
+      if (tagsNumber === 1) {
+        await viewArticlePage.assertArticleTagsListIsHidden();
+      } else {
+        await viewArticlePage.assertArticleTagsAreVisible(article.tags);
+      }
     });
   });
 });

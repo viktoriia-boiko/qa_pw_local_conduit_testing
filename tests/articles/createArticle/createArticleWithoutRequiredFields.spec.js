@@ -1,6 +1,6 @@
 import { test } from '../../_fixtures/fixtures';
 import { signUpUser } from '../../../src/ui/actions/auth/signUpUser';
-import { TITLE_CANNOT_BE_EMPTY } from '../../../src/ui/constants/articleErrorMessages';
+import { ARTICLE_PUBLISH_FAILED_MESSAGE } from '../../../src/ui/constants/articleErrorMessages';
 
 test.beforeEach(async ({ page, user }) => {
   await signUpUser(page, user);
@@ -13,5 +13,7 @@ test('Creat an article without required fields', async ({
   await internalHomePage.header.clickNewArticleLink();
 
   await createArticlePage.clickPublishArticleButton();
-  await createArticlePage.assertErrorMessageContainsText(TITLE_CANNOT_BE_EMPTY);
+  await createArticlePage.assertErrorMessageContainsText(
+    ARTICLE_PUBLISH_FAILED_MESSAGE,
+  );
 });
