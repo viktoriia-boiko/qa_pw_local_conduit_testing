@@ -1,6 +1,7 @@
 import { expect } from '../../../common/helpers/pw';
 import { BasePage } from '../BasePage';
 import { ROUTES } from '../../constants/pageRoutes';
+import { SweetAlertModal } from '../../components/SweetAlertModal';
 
 export class SignUpPage extends BasePage {
   constructor(page, userId = 0) {
@@ -10,7 +11,12 @@ export class SignUpPage extends BasePage {
     this.emailField = page.getByPlaceholder('Email');
     this.passwordField = page.getByPlaceholder('Password');
     this.signUpButton = page.getByRole('button', { name: 'Sign up' });
-    this.errorMessage = page.getByRole('list').nth(1);
+    this.modal = new SweetAlertModal(page, userId);
+    this.errorMessage = this.modal.container;
+  }
+
+  async closeModal() {
+    await this.modal.clickConfirmButton();
   }
 
   async fillUsernameField(username) {

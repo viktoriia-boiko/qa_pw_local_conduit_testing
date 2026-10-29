@@ -2,6 +2,7 @@ import { expect } from '../../../common/helpers/pw';
 import { BasePage } from '../BasePage';
 import { InternalHeader } from '../../components/header/InternalHeader';
 import { ROUTES } from '../../constants/pageRoutes';
+import { SweetAlertModal } from '../../components/SweetAlertModal';
 
 export class CreateArticlePage extends BasePage {
   constructor(page, userId = 0) {
@@ -15,7 +16,8 @@ export class CreateArticlePage extends BasePage {
     this.publishArticleButton = page.getByRole('button', {
       name: 'Publish Article',
     });
-    this.errorMessage = page.getByRole('list').nth(1);
+    this.modal = new SweetAlertModal(page, userId);
+    this.errorMessage = this.modal.container;
   }
 
   async fillTitleField(title) {
